@@ -16,23 +16,7 @@ const getPrimes = (min: number, max: number) => {
   return Object.values(result.slice(Math.max(min, 2)))
 }
 
-const getRandNum = (min: number, max: number) =>
-  Math.floor(Math.random() * (max - min + 1) + min)
-
-const getRandPrime = (min: number, max: number) => {
-  const primes = getPrimes(min, max)
-  return primes[getRandNum(0, primes.length - 1)]
-}
-
 export const generatePairArray = () => {
-  const pickedNumbers: number[] = []
-  for (let i = 0; i < 15; ) {
-    const randomNumber = getRandPrime(1, 50)
-    if (!pickedNumbers.includes(randomNumber)) {
-      i++
-      pickedNumbers.push(randomNumber)
-    }
-  }
-
-  return shuffle(pickedNumbers.concat(pickedNumbers))
+  const primes = getPrimes(1, 50)
+  return shuffle(primes.concat(primes))
 }
